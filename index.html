@@ -1,58 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>WyrmSec Honeypot Logs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WyrmSec Honeypot Dashboard</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f1117;
-      color: #d1d5db;
-      max-width: 800px;
-      margin: 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #111;
+      color: #eee;
       padding: 2em;
+      line-height: 1.6;
     }
-    h1 {
-      color: #10b981;
+    h1, h2 {
+      color: #00ffaa;
     }
-    code {
-      background-color: #1f2937;
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
+    .section {
+      margin-bottom: 3em;
     }
-    footer {
-      margin-top: 4em;
-      font-size: 0.9em;
-      color: #6b7280;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #222;
+      margin-top: 1em;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #333;
+      text-align: left;
+    }
+    th {
+      background-color: #00ffaa33;
+    }
+    .note {
+      font-style: italic;
+      color: #ccc;
+    }
+    .funny {
+      background: #222;
+      border-left: 5px solid #ff3399;
+      padding: 1em;
+      margin-top: 1em;
     }
   </style>
 </head>
 <body>
-  <h1>🐍 WyrmSec Honeypot Reports</h1>
-  <p>Welcome to the public threat intel log from our honeypot.</p>
 
-  <h2>📊 Latest Summary (June 2025)</h2>
-  <ul>
-    <li>🔐 SSH brute-force attempts: <strong>3,782</strong></li>
-    <li>🌐 Top attacking IPs:
+  <h1>🐍 WyrmSec Honeypot Attack Dashboard</h1>
+  <p class="note">Live from the logs of <code>cowrie</code>. This page updates with each attack wave.</p>
+
+  <div class="section">
+    <h2>🚨 Top 5 Most Active Attacker IPs</h2>
+    <table>
+      <thead>
+        <tr><th>Rank</th><th>IP Address</th><th>Connection Attempts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>91.208.197.71</td><td>1775</td></tr>
+        <tr><td>2</td><td>137.184.229.8</td><td>1419</td></tr>
+        <tr><td>3</td><td>161.132.43.199</td><td>1418</td></tr>
+        <tr><td>4</td><td>142.93.155.25</td><td>1389</td></tr>
+        <tr><td>5</td><td>138.197.163.133</td><td>1376</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🔐 Most Attempted Passwords</h2>
+    <table>
+      <thead>
+        <tr><th>Password</th><th>Attempts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>123456</td><td>188</td></tr>
+        <tr><td>admin</td><td>73</td></tr>
+        <tr><td>password</td><td>36</td></tr>
+        <tr><td>abc123</td><td>33</td></tr>
+        <tr><td>123</td><td>27</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>💻 Most Used Commands</h2>
+    <table>
+      <thead>
+        <tr><th>Command</th><th>Count</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>uname -s -v -n -r -m</td><td>241</td></tr>
+        <tr><td>uname -s -m</td><td>2</td></tr>
+        <tr><td>(botnet SSH scan payload)</td><td>1</td></tr>
+        <tr><td>mount + cd ./.+/.+/.+</td><td>1</td></tr>
+        <tr><td>/ip cloud print</td><td>1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🤡 Stupid Attackers Corner</h2>
+    <div class="funny">
+      <p>We noticed quite a few of our "attackers" doing some real advanced recon:</p>
       <ul>
-        <li>185.234.219.211</li>
-        <li>203.0.113.47</li>
-        <li>45.33.32.156</li>
+        <li><code>ls</code> – for the 400th time, the file list hasn't changed.</li>
+        <li><code>cd</code> – hoping to find Narnia in /tmp, huh?</li>
+        <li><code>pwd</code> – yes, you are in jail.</li>
+        <li><code>exit</code> – see ya! 👋</li>
+        <li><code>clear</code> – nice try, logs don't forget.</li>
       </ul>
-    </li>
-    <li>🧪 VirusTotal reports: <code>23 payloads submitted</code></li>
-  </ul>
+      <p>Better luck next time, script kiddies.</p>
+    </div>
+  </div>
 
-  <h2>🧠 About</h2>
-  <p>This project collects and publishes raw data and summaries from an SSH honeypot deployed on a hardened FreeBSD/Linux VPS. All data is for educational and threat research purposes only.</p>
-
-  <h2>📄 Terms</h2>
-  <p>By accessing this site, you agree not to misuse the published data. This is strictly for defensive research, open-source intel sharing, and cybersecurity awareness.</p>
+  <div class="section">
+    <h2>🐛 Malicious File Downloads</h2>
+    <p>No malware was successfully downloaded during this log window. Either they're getting shy, or wget is broken.</p>
+  </div>
 
   <footer>
-    <p>&copy; 2025 WyrmSec | GitHub: <a href="https://github.com/wyrmsec" style="color:#10b981;">@wyrmsec</a></p>
+    <hr/>
+    <p class="note">Last updated: June 4, 2025 • Educational use only • Powered by Cowrie + GitHub Pages</p>
   </footer>
+
 </body>
 </html>
