@@ -1,126 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WyrmSec Honeypot Dashboard</title>
+  <meta charset="UTF-8">
+  <title>WyrmSec Honeypot - Dashboard</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #111;
-      color: #eee;
+      background-color: #0a0a0a;
+      color: #e6e6e6;
+      font-family: 'Courier New', monospace;
       padding: 2em;
-      line-height: 1.6;
     }
     h1, h2 {
-      color: #00ffaa;
+      color: #39ff14;
     }
     .section {
-      margin-bottom: 3em;
+      margin-bottom: 2em;
+      background: #1a1a1a;
+      border-left: 5px solid #39ff14;
+      padding: 1em;
+      border-radius: 10px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      background: #222;
       margin-top: 1em;
+      background-color: #111;
     }
     th, td {
       padding: 10px;
       border: 1px solid #333;
-      text-align: left;
+      color: #e6e6e6;
     }
     th {
-      background-color: #00ffaa33;
+      background-color: #222;
     }
-    .note {
+    .footer {
+      margin-top: 4em;
+      text-align: center;
+      font-size: 0.9em;
+      color: #999;
+    }
+    a {
+      color: #00ffff;
+    }
+    .defanged {
+      color: #ff66cc;
       font-style: italic;
-      color: #ccc;
     }
-    .funny {
-      background: #222;
-      border-left: 5px solid #ff3399;
-      padding: 1em;
-      margin-top: 1em;
+    #clock {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #00ffcc;
     }
   </style>
 </head>
 <body>
-
-  <h1>🐍 WyrmSec Honeypot Attack Dashboard</h1>
-  <p class="note">Live from the logs of <code>cowrie</code>. This page updates with each attack wave.</p>
+  <h1>💻 WyrmSec Honeypot Portal</h1>
+  <p>Welcome to a real-time view into attacker behavior and failed scripts.</p>
+  <p>⏰ Current Time: <span id="clock"></span></p>
 
   <div class="section">
-    <h2>🚨 Top 5 Most Active Attacker IPs</h2>
-    <table>
-      <thead>
-        <tr><th>Rank</th><th>IP Address</th><th>Connection Attempts</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>91.208.197.71</td><td>1775</td></tr>
-        <tr><td>2</td><td>137.184.229.8</td><td>1419</td></tr>
-        <tr><td>3</td><td>161.132.43.199</td><td>1418</td></tr>
-        <tr><td>4</td><td>142.93.155.25</td><td>1389</td></tr>
-        <tr><td>5</td><td>138.197.163.133</td><td>1376</td></tr>
-      </tbody>
-    </table>
+    <h2>🔥 Today's Top 10 IPs</h2>
+    <table><thead><tr><th>IP</th><th>Attempts</th></tr></thead><tbody>
+      <tr><td>80.94.95.15</td><td>470</td></tr>
+      <tr><td>91.208.197.71</td><td>377</td></tr>
+      <tr><td>134.199.153.252</td><td>360</td></tr>
+      <tr><td>80.94.95.112</td><td>305</td></tr>
+      <tr><td>137.184.229.8</td><td>187</td></tr>
+      <tr><td>161.132.43.199</td><td>186</td></tr>
+      <tr><td>142.93.155.25</td><td>181</td></tr>
+      <tr><td>170.64.194.45</td><td>180</td></tr>
+      <tr><td>138.197.163.133</td><td>180</td></tr>
+      <tr><td>178.250.191.146</td><td>146</td></tr>
+    </tbody></table>
   </div>
 
   <div class="section">
-    <h2>🔐 Most Attempted Passwords</h2>
-    <table>
-      <thead>
-        <tr><th>Password</th><th>Attempts</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>123456</td><td>188</td></tr>
-        <tr><td>admin</td><td>73</td></tr>
-        <tr><td>password</td><td>36</td></tr>
-        <tr><td>abc123</td><td>33</td></tr>
-        <tr><td>123</td><td>27</td></tr>
-      </tbody>
-    </table>
+    <h2>🔑 Username + Password Combos</h2>
+    <table><thead><tr><th>Username</th><th>Password</th><th>Tries</th></tr></thead><tbody>
+      <tr><td>root</td><td>(blank)</td><td>35</td></tr>
+      <tr><td>admin</td><td>admin</td><td>15</td></tr>
+      <tr><td>pi</td><td>raspberry</td><td>14</td></tr>
+      <tr><td>ubuntu</td><td>ubuntu</td><td>14</td></tr>
+      <tr><td>root</td><td>root</td><td>13</td></tr>
+      <tr><td>git</td><td>git</td><td>12</td></tr>
+      <tr><td>admin</td><td>admin123</td><td>12</td></tr>
+      <tr><td>hive</td><td>hive</td><td>11</td></tr>
+      <tr><td>nginx</td><td>nginx</td><td>11</td></tr>
+      <tr><td>ftp</td><td>123456</td><td>11</td></tr>
+    </tbody></table>
   </div>
 
   <div class="section">
-    <h2>💻 Most Used Commands</h2>
-    <table>
-      <thead>
-        <tr><th>Command</th><th>Count</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>uname -s -v -n -r -m</td><td>241</td></tr>
-        <tr><td>uname -s -m</td><td>2</td></tr>
-        <tr><td>(botnet SSH scan payload)</td><td>1</td></tr>
-        <tr><td>mount + cd ./.+/.+/.+</td><td>1</td></tr>
-        <tr><td>/ip cloud print</td><td>1</td></tr>
-      </tbody>
-    </table>
+    <h2>🧠 Command Abuse</h2>
+    <ul>
+      <li><code>ls</code> spammed dozens of times hoping for change.</li>
+      <li><code>cd /root</code>... if only it was that easy, bud.</li>
+      <li><code>wget</code> from broken IPs... they never learn.</li>
+    </ul>
   </div>
 
   <div class="section">
-    <h2>🤡 Stupid Attackers Corner</h2>
-    <div class="funny">
-      <p>We noticed quite a few of our "attackers" doing some real advanced recon:</p>
-      <ul>
-        <li><code>ls</code> – for the 400th time, the file list hasn't changed.</li>
-        <li><code>cd</code> – hoping to find Narnia in /tmp, huh?</li>
-        <li><code>pwd</code> – yes, you are in jail.</li>
-        <li><code>exit</code> – see ya! 👋</li>
-        <li><code>clear</code> – nice try, logs don't forget.</li>
-      </ul>
-      <p>Better luck next time, script kiddies.</p>
-    </div>
+    <h2>🦠 File Downloads (SHA-256 Hashes)</h2>
+    <table><thead><tr><th>IP</th><th>Hash</th><th>VirusTotal Link</th><th>Defanged</th></tr></thead><tbody>
+      <tr>
+        <td>169.0.164.62</td>
+        <td>4aa45d6226f2eaac188e253134bf4b12a7ce7d8f9167ec477ad3bc83a8feab48</td>
+        <td><a href="https://www.virustotal.com/gui/url/620ffc29d0c4e10cef8b75b409234b181a579bb7140e89c88a9c165de486fbab/detection">VirusTotal</a></td>
+        <td class="defanged">hxxp://61[.]215[.]151[.]173/x/1sh</td>
+      </tr>
+      <tr>
+        <td>169.0.164.62</td>
+        <td>49dff6cc2bf001c1cafdfb571d2f883887be92fcec7862ac61fb5852530c2fad</td>
+        <td><a href="https://www.virustotal.com/gui/url/812dcfca56f2f32260e3633504e2665b630a9fa2a72e96c5c34d4f78bb04f5d8">VirusTotal</a></td>
+        <td class="defanged">hxxp://61[.]215[.]151[.]173/x/2sh</td>
+      </tr>
+      <tr>
+        <td>169.0.164.62</td>
+        <td>0131d2f87f9bc151fb2701a570585ed4db636440392a357a54b8b29f2ba842da</td>
+        <td><a href="https://www.virustotal.com/gui/url/1fae4a3e30fbf4988bb0aae271c967f28707ce316afac6dcc2a55b9aa187f04f">VirusTotal</a></td>
+        <td class="defanged">hxxp://61[.]215[.]151[.]173/x/3sh</td>
+      </tr>
+    </tbody></table>
   </div>
 
   <div class="section">
-    <h2>🐛 Malicious File Downloads</h2>
-    <p>No malware was successfully downloaded during this log window. Either they're getting shy, or wget is broken.</p>
+    <h2>📚 Learn From This</h2>
+    <p>🛠️ <strong>SSH Key Injection:</strong> Some attackers try to write SSH keys using echo &gt; authorized_keys. Watch for these patterns.</p>
+    <p>📡 <strong>Recon Commands:</strong> <code>uname</code>, <code>ifconfig</code>, and <code>w</code> are common probes. Log their frequency.</p>
+    <p>🚧 <strong>Payloads Over HTTP:</strong> Most downloaded files are shell scripts or compiled malware — run in a sandbox before analysis.</p>
   </div>
 
-  <footer>
-    <hr/>
-    <p class="note">Last updated: June 4, 2025 • Educational use only • Powered by Cowrie + GitHub Pages</p>
-  </footer>
+  <div class="footer">
+    <p>🌐 Powered by WyrmSec Honeypot | Contact: <a href="mailto:wyrmix@tuta.io">wyrmix@tuta.io</a></p>
+    <p>🐙 GitHub: <a href="https://github.com/WyrmSec">github.com/WyrmSec</a></p>
+    <p>✨ Keep your ports closed and your mind open.</p>
+  </div>
 
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent = now.toLocaleString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 </html>
